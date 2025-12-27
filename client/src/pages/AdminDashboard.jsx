@@ -5,7 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { CheckCircleOutlined, CloseCircleOutlined, ClockCircleOutlined, CalendarOutlined, DownOutlined, DashboardOutlined, FileTextOutlined, AlertOutlined } from '@ant-design/icons';
 import { Card, Button, message, List, Modal } from 'antd';
-import Navbar from "../components/navbar";
+import Navbar from "../components/Navbar";
 import API_BASE_URL from "../constant";
 
 const { Meta } = Card;

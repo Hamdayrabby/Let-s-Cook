@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import Navbar from "../components/navbar";
+import Navbar from "../components/Navbar";
 import { List, Button, Card, message, Modal, Form, Input } from "antd";
 import { DeleteOutlined, EditOutlined, DownOutlined } from "@ant-design/icons";
 import { useSelector } from "react-redux";

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { List, Button, Card, message } from 'antd';
 import { DeleteOutlined, DownOutlined } from '@ant-design/icons';
-import Navbar from '../components/navbar.jsx';
+import Navbar from '../components/Navbar.jsx';
 
 import { useSelector } from 'react-redux';
 import API_BASE_URL from "../constant.js";

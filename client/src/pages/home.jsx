@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import Navbar from "../components/navbar.jsx";
+import Navbar from "../components/Navbar.jsx";
 import "../styles/home.css";
 import { useSelector } from "react-redux";
 import { SaveOutlined, CheckOutlined, DownOutlined, SearchOutlined } from "@ant-design/icons";
