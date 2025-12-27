@@ -1,0 +1,32 @@
+.createRecipe {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 25px;
+    background-color: #D8CFC4; /* Light brownish background */
+    padding: 20px; /* Add padding for better spacing */
+    border-radius: 10px; /* Optional: add rounded corners */
+}
+
+.createRecipe img {
+    width: 600px;
+    order: 1;
+}
+
+.createRecipeForm {
+    display: flex;
+    flex-direction: column;
+    width: 550px;
+    gap: 10px;
+}
+
+button:focus {
+    outline: none; /* Removes default focus outline */
+    box-shadow: none; /* Removes shadow for focus state */
+}
+
+@media (max-width: 968px) {
+    .createRecipe img {
+        display: none; /* Hide image on smaller screens */
+    }
+}
