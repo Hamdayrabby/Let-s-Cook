@@ -1,0 +1,11 @@
+services:
+  - type: web
+    name: lets-cook-backend
+    runtime: node
+    region: oregon
+    buildCommand: npm install
+    startCommand: npm start
+    rootDir: server
+    envVars:
+      - key: NODE_VERSION
+        value: 22.16.0
