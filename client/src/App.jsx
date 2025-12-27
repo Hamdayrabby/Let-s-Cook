@@ -37,6 +37,7 @@ function App() {
 
           {/* Admin Routes - Protected with AdminRoute */}
           <Route Component={AdminRoute}>
+            <Route path="/admin" element={<Navigate to="/admin/dashboard" replace />}></Route>
             <Route path="/admin/dashboard" Component={AdminDashboard}></Route>
           </Route>
 
