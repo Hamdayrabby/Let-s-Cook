@@ -1,5 +1,5 @@
 import "./App.css";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 import home from "./pages/home";
 import savedRecipes from "./pages/savedRecipes";
 import createRecipe from "./pages/createRecipe";
