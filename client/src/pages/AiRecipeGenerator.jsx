@@ -14,6 +14,7 @@ import {
 import Navbar from "../components/Navbar";
 import API_BASE_URL from "../constant";
 import { useSelector } from "react-redux";
+import "../styles/aiRecipeGenerator.css";
 
 const { TextArea } = Input;
 const { Option } = Select;
@@ -134,96 +135,59 @@ const AiRecipeGenerator = () => {
     };
 
     return (
-        <div style={{ minHeight: "100vh", backgroundColor: "#171717", color: "#a3a3a3" }}>
+        <div className="ai-generator-container">
             <Navbar />
-            <div style={{ padding: "40px 60px" }}>
+            <div className="ai-generator-content">
                 {/* Header */}
-                <div style={{ marginBottom: "40px", textAlign: "center" }}>
-                    <div style={{
-                        display: "inline-flex",
-                        alignItems: "center",
-                        justifyContent: "center",
-                        gap: "16px",
-                        marginBottom: "16px"
-                    }}>
-                        <div style={{
-                            width: "64px",
-                            height: "64px",
-                            background: "linear-gradient(135deg, #8b5cf6 0%, #ec4899 100%)",
-                            borderRadius: "16px",
-                            display: "flex",
-                            alignItems: "center",
-                            justifyContent: "center",
-                            boxShadow: "0 10px 20px rgba(139, 92, 246, 0.3)"
-                        }}>
+                <div className="ai-header">
+                    <div className="ai-icon-wrapper">
+                        <div className="ai-icon-container">
                             <ExperimentOutlined style={{ fontSize: "32px", color: "white" }} />
                         </div>
                     </div>
-                    <h1 style={{ fontSize: "48px", color: "#fff", fontWeight: "bold", margin: 0 }}>
+                    <h1 className="ai-title">
                         AI Recipe Generator
                     </h1>
-                    <p style={{ fontSize: "18px", color: "#a3a3a3", marginTop: "8px" }}>
+                    <p className="ai-subtitle">
                         Transform your ingredients into magic with Gemini AI ✨
                     </p>
                 </div>
 
-                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "40px", alignItems: "start" }}>
+                <div className="ai-main-grid">
                     {/* Input Section */}
-                    <div style={{
-                        backgroundColor: "#262626",
-                        padding: "32px",
-                        borderRadius: "24px",
-                        border: "1px solid #404040"
-                    }}>
-                        <h3 style={{ color: "white", fontSize: "20px", marginBottom: "24px", display: "flex", alignItems: "center", gap: "8px" }}>
+                    <div className="ai-input-section">
+                        <h3 className="ai-section-title">
                             <ThunderboltOutlined style={{ color: "#ec4899" }} /> Configuration
                         </h3>
 
                         {/* Ingredients Input */}
-                        <div style={{ marginBottom: "24px" }}>
-                            <label style={{ display: "block", color: "#fff", marginBottom: "8px", fontWeight: "500" }}>
+                        <div className="ai-ingredients-container">
+                            <label className="ai-label">
                                 What ingredients do you have?
                             </label>
-                            <div style={{ display: "flex", gap: "8px", marginBottom: "12px" }}>
+                            <div className="ai-input-group">
                                 <Input
                                     placeholder="e.g. Chicken, Tomatoes, Basil"
                                     value={currentIngredient}
                                     onChange={(e) => setCurrentIngredient(e.target.value)}
                                     onPressEnter={handleAddIngredient}
-                                    style={{
-                                        backgroundColor: "#171717",
-                                        borderColor: "#404040",
-                                        color: "white",
-                                        borderRadius: "8px"
-                                    }}
+                                    className="ai-input"
                                 />
                                 <Button
                                     type="primary"
                                     onClick={handleAddIngredient}
-                                    style={{
-                                        background: "#262626",
-                                        borderColor: "#8b5cf6",
-                                        color: "#8b5cf6"
-                                    }}
+                                    className="ai-add-button"
                                 >
                                     Add
                                 </Button>
                             </div>
-                            <div style={{ minHeight: "40px" }}>
+                            <div className="ai-tags-container">
                                 {ingredients.map(tag => (
                                     <Tag
                                         closable
                                         onClose={() => removeIngredient(tag)}
                                         key={tag}
-                                        style={{
-                                            padding: "6px 12px",
-                                            borderRadius: "6px",
-                                            fontSize: "14px",
-                                            marginBottom: "8px",
-                                            backgroundColor: "rgba(139, 92, 246, 0.1)",
-                                            borderColor: "#8b5cf6",
-                                            color: "#c4b5fd"
-                                        }}
+                                        className="ai-tag"
                                     >
                                         {tag}
                                     </Tag>
@@ -231,14 +195,15 @@ const AiRecipeGenerator = () => {
                             </div>
                         </div>
 
-                        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: "16px", marginBottom: "32px" }}>
+                        <div className="ai-options-grid">
                             <div>
-                                <label style={{ display: "block", color: "#a3a3a3", marginBottom: "8px", fontSize: "12px" }}>CUISINE</label>
+                                <label className="ai-option-label">CUISINE</label>
                                 <Select
                                     placeholder="Any"
                                     style={{ width: "100%" }}
                                     onChange={setCuisine}
                                     className="ai-select"
+                                    popupClassName="ai-select-dropdown"
                                     dropdownStyle={{ backgroundColor: "#262626" }}
                                 >
                                     <Option value="Italian">Italian 🍝</Option>
@@ -250,11 +215,13 @@ const AiRecipeGenerator = () => {
                                 </Select>
                             </div>
                             <div>
-                                <label style={{ display: "block", color: "#a3a3a3", marginBottom: "8px", fontSize: "12px" }}>TIME</label>
+                                <label className="ai-option-label">TIME</label>
                                 <Select
                                     placeholder="Any"
                                     style={{ width: "100%" }}
                                     onChange={setCookingTime}
+                                    popupClassName="ai-select-dropdown"
+                                    dropdownStyle={{ backgroundColor: "#262626" }}
                                 >
                                     <Option value="15 min">Quick (15m)</Option>
                                     <Option value="30 min">Medium (30m)</Option>
@@ -262,11 +229,13 @@ const AiRecipeGenerator = () => {
                                 </Select>
                             </div>
                             <div>
-                                <label style={{ display: "block", color: "#a3a3a3", marginBottom: "8px", fontSize: "12px" }}>DIFFICULTY</label>
+                                <label className="ai-option-label">DIFFICULTY</label>
                                 <Select
                                     placeholder="Any"
                                     style={{ width: "100%" }}
                                     onChange={setDifficulty}
+                                    popupClassName="ai-select-dropdown"
+                                    dropdownStyle={{ backgroundColor: "#262626" }}
                                 >
                                     <Option value="Easy">Beginner</Option>
                                     <Option value="Medium">Intermediate</Option>
@@ -282,36 +251,17 @@ const AiRecipeGenerator = () => {
                             onClick={handleGenerate}
                             loading={isLoading}
                             icon={!isLoading && <ExperimentOutlined />}
-                            style={{
-                                height: "56px",
-                                borderRadius: "12px",
-                                fontSize: "18px",
-                                fontWeight: "bold",
-                                background: "linear-gradient(90deg, #8b5cf6 0%, #ec4899 100%)",
-                                border: "none",
-                                boxShadow: "0 4px 15px rgba(236, 72, 153, 0.3)"
-                            }}
+                            className="ai-generate-button"
                         >
                             {isLoading ? "Brewing Magic..." : "Generate Recipe"}
                         </Button>
                     </div>
 
                     {/* Results Section */}
-                    <div style={{
-                        minHeight: "500px",
-                        display: "flex",
-                        flexDirection: "column",
-                        justifyContent: generatedRecipe ? "start" : "center",
-                        alignItems: generatedRecipe ? "stretch" : "center"
-                    }}>
+                    <div className={`ai-results-section ${generatedRecipe ? 'has-recipe' : ''}`}>
                         {!generatedRecipe && !isLoading && (
-                            <div style={{ textAlign: "center", color: "#525252" }}>
-                                <div style={{
-                                    fontSize: "64px",
-                                    marginBottom: "16px",
-                                    opacity: 0.2,
-                                    filter: "grayscale(100%)"
-                                }}>
+                            <div className="ai-empty-state">
+                                <div className="ai-empty-icon">
                                     ✨
                                 </div>
                                 <p>Your AI-generated recipe will appear here</p>
@@ -319,9 +269,9 @@ const AiRecipeGenerator = () => {
                         )}
 
                         {isLoading && (
-                            <div style={{ textAlign: "center", padding: "60px" }}>
+                            <div className="ai-loading-state">
                                 <Spin size="large" />
-                                <p style={{ marginTop: "24px", color: "#ec4899", fontSize: "16px" }}>
+                                <p className="ai-loading-text">
                                     Consulting the digital chef...
                                 </p>
                             </div>
@@ -330,25 +280,15 @@ const AiRecipeGenerator = () => {
                         {generatedRecipe && (
                             <Card
                                 className="generated-recipe-card"
-                                style={{
-                                    backgroundColor: "#262626",
-                                    borderColor: "#404040",
-                                    borderRadius: "24px",
-                                    overflow: "hidden"
-                                }}
                                 bodyStyle={{ padding: "0" }}
                             >
-                                <div style={{
-                                    background: "linear-gradient(135deg, rgba(139, 92, 246, 0.1) 0%, rgba(236, 72, 153, 0.1) 100%)",
-                                    padding: "32px",
-                                    borderBottom: "1px solid #404040"
-                                }}>
-                                    <div style={{ display: "flex", justifyContent: "space-between", alignItems: "start" }}>
+                                <div className="recipe-card-header">
+                                    <div className="recipe-header-content">
                                         <div>
-                                            <h2 style={{ color: "white", fontSize: "28px", margin: "0 0 8px 0" }}>
+                                            <h2 className="recipe-title">
                                                 {generatedRecipe.name}
                                             </h2>
-                                            <p style={{ color: "#a3a3a3", fontSize: "16px", margin: 0 }}>
+                                            <p className="recipe-description">
                                                 {generatedRecipe.description}
                                             </p>
                                         </div>
@@ -357,17 +297,13 @@ const AiRecipeGenerator = () => {
                                             shape="round"
                                             icon={<SaveOutlined />}
                                             onClick={handleSaveRecipe}
-                                            style={{
-                                                backgroundColor: "#52c41a",
-                                                borderColor: "#52c41a",
-                                                fontWeight: "bold"
-                                            }}
+                                            className="recipe-save-button"
                                         >
                                             Save Recipe
                                         </Button>
                                     </div>
 
-                                    <div style={{ display: "flex", gap: "16px", marginTop: "20px" }}>
+                                    <div className="recipe-tags">
                                         <Tag icon={<ClockCircleOutlined />} color="warning">
                                             {generatedRecipe.cookingTime} mins
                                         </Tag>
@@ -380,23 +316,23 @@ const AiRecipeGenerator = () => {
                                     </div>
                                 </div>
 
-                                <div style={{ padding: "32px" }}>
-                                    <div style={{ display: "grid", gridTemplateColumns: "1fr 2fr", gap: "40px" }}>
+                                <div className="recipe-card-body">
+                                    <div className="recipe-content-grid">
                                         <div>
-                                            <h4 style={{ color: "#ec4899", textTransform: "uppercase", letterSpacing: "1px", fontSize: "12px", marginBottom: "16px" }}>
+                                            <h4 className="recipe-section-title recipe-ingredients-title">
                                                 Ingredients
                                             </h4>
-                                            <ul style={{ paddingLeft: "16px", color: "#e5e5e5" }}>
+                                            <ul className="recipe-ingredients-list">
                                                 {generatedRecipe.ingredients.map((ing, i) => (
                                                     <li key={i} style={{ marginBottom: "8px" }}>{ing}</li>
                                                 ))}
                                             </ul>
                                         </div>
                                         <div>
-                                            <h4 style={{ color: "#8b5cf6", textTransform: "uppercase", letterSpacing: "1px", fontSize: "12px", marginBottom: "16px" }}>
+                                            <h4 className="recipe-section-title recipe-instructions-title">
                                                 Instructions
                                             </h4>
-                                            <div style={{ color: "#d4d4d4", lineHeight: "1.8", whiteSpace: "pre-wrap" }}>
+                                            <div className="recipe-instructions">
                                                 {generatedRecipe.instructions}
                                             </div>
                                         </div>

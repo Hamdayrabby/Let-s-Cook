@@ -1,7 +1,8 @@
 .homeContainer {
     padding: 20px;
     text-align: center;
-    background-color: #D8CFC4; /* Light brownish background */
+    background-color: #D8CFC4;
+    /* Light brownish background */
 }
 
 .sectionHeading {
@@ -17,62 +18,122 @@
 }
 
 .searchInput {
-    width: 300px; /* Fixed width for search input */
+    width: 300px;
+    /* Fixed width for search input */
     padding: 10px 15px;
     font-size: 16px;
-    border: 2px solid #007bff; /* Blue border */
-    border-radius: 5px 0 0 5px; /* Rounded corners */
+    border: 2px solid #007bff;
+    /* Blue border */
+    border-radius: 5px 0 0 5px;
+    /* Rounded corners */
     outline: none;
     transition: border-color 0.3s ease;
 }
 
 .searchInput::placeholder {
-    color: #999; /* Placeholder color */
+    color: #999;
+    /* Placeholder color */
 }
 
 .searchInput:focus {
-    border-color: #0056b3; /* Darker blue on focus */
+    border-color: #0056b3;
+    /* Darker blue on focus */
 }
 
 .searchButton {
     padding: 10px 20px;
     font-size: 16px;
-    color: white; /* Text color */
-    background-color: #007bff; /* Button color */
+    color: white;
+    /* Text color */
+    background-color: #007bff;
+    /* Button color */
     border: none;
-    border-radius: 0 5px 5px 0; /* Rounded corners */
+    border-radius: 0 5px 5px 0;
+    /* Rounded corners */
     cursor: pointer;
     transition: background-color 0.3s ease;
-    margin-left: 10px; /* Margin for spacing */
+    margin-left: 10px;
+    /* Margin for spacing */
 }
 
 .searchButton:hover {
-    background-color: #0056b3; /* Darker blue on hover */
+    background-color: #0056b3;
+    /* Darker blue on hover */
 }
 
 .recipeCard {
     border-radius: 10px;
     overflow: hidden;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2); /* Default shadow */
-    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transition */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    /* Default shadow */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    /* Smooth transition */
 }
 
 .recipeCard:hover {
-    transform: translateY(-5px); /* Move up slightly on hover */
-    box-shadow: 0 16px 30px rgba(0, 0, 0, 0.4); /* Increased shadow on hover */
+    transform: translateY(-5px);
+    /* Move up slightly on hover */
+    box-shadow: 0 16px 30px rgba(0, 0, 0, 0.4);
+    /* Increased shadow on hover */
 }
 
 .recipeDescription {
-    height: 60px; /* Fixed height for description */
-    overflow: hidden; /* Hide overflow */
-    text-overflow: ellipsis; /* Add ellipsis for overflow text */
-    display: block; /* Use block display */
-    line-height: 1.5; /* Adjust line height for readability */
+    height: 60px;
+    /* Fixed height for description */
+    overflow: hidden;
+    /* Hide overflow */
+    text-overflow: ellipsis;
+    /* Add ellipsis for overflow text */
+    display: block;
+    /* Use block display */
+    line-height: 1.5;
+    /* Adjust line height for readability */
 }
 
 /* Responsive styles */
+
+/* Tablet (1024px and below) */
+@media (max-width: 1024px) {
+    .searchInput {
+        width: 70%;
+    }
+}
+
+/* Mobile (768px and below) */
 @media (max-width: 768px) {
     .searchInput {
-        width: 80%; /* Make the input responsive on smaller screens */
+        width: 80%;
+    }
+
+    .sectionHeading {
+        font-size: 20px;
+    }
+
+    .homeContainer {
+        padding: 15px;
+    }
+}
+
+/* Small Mobile (480px and below) */
+@media (max-width: 480px) {
+    .searchInput {
+        width: 100%;
+        border-radius: 5px;
+    }
+
+    .searchButton {
+        width: 100%;
+        margin-left: 0;
+        margin-top: 10px;
+        border-radius: 5px;
+    }
+
+    .searchContainer {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .sectionHeading {
+        font-size: 18px;
     }
 }

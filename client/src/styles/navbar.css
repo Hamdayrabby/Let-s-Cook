@@ -1,137 +1,185 @@
 /* General Navbar Styling */
 .navbar {
-    background-color: #ffffff;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    padding: 15px 30px;
-    position: sticky;
-    top: 0;
-    z-index: 1000;
+  background-color: #ffffff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 15px 30px;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.navbarContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.logo img {
+  width: 120px;
+}
+
+.hamburgerIcon {
+  cursor: pointer;
+  font-size: 24px;
+  color: #333;
+  display: none;
+}
+
+.menuIcon,
+.closeIcon {
+  transition: transform 0.3s ease;
+}
+
+.menuItems {
+  display: flex;
+  align-items: center;
+}
+
+.menuItems.show {
+  display: block;
+}
+
+/* Links Styling */
+.navLink {
+  color: #333;
+  font-size: 16px;
+  font-weight: 500;
+  margin: 0 10px;
+  /* Adjusted margin for spacing */
+  text-decoration: none;
+  padding: 10px 15px;
+  border-radius: 8px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  /* Smooth transition */
+}
+
+.navLink:hover {
+  background-color: #007bff;
+  /* Blue color when hovered */
+  color: #fff;
+  box-shadow: 0 4px 12px rgba(0, 123, 255, 0.2);
+  /* Hover effect with shadow */
+}
+
+/* User Profile Styling */
+.userProfile {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.userName {
+  font-size: 16px;
+  cursor: pointer;
+  color: #333;
+  display: flex;
+  align-items: center;
+}
+
+.userName:hover {
+  color: #007bff;
+}
+
+/* Popover Styling */
+.popoverContent {
+  padding: 10px;
+}
+
+.popoverEmail {
+  color: #555;
+  margin-bottom: 10px;
+}
+
+.popoverTitle {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.logoutButton {
+  background-color: #007bff;
+  border: none;
+  color: #fff;
+  width: 100%;
+  border-radius: 8px;
+  padding: 10px;
+  transition: background-color 0.3s ease;
+}
+
+.logoutButton:hover {
+  background-color: #0056b3;
+}
+
+/* Mobile Menu */
+
+/* Tablet (1024px and below) */
+@media screen and (max-width: 1024px) {
+  .navbar {
+    padding: 12px 20px;
   }
-  
-  .navbarContainer {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-  }
-  
-  .logo img {
-    width: 120px;
-  }
-  
-  .hamburgerIcon {
-    cursor: pointer;
-    font-size: 24px;
-    color: #333;
-    display: none;
-  }
-  
-  .menuIcon,
-  .closeIcon {
-    transition: transform 0.3s ease;
-  }
-  
-  .menuItems {
-    display: flex;
-    align-items: center;
-  }
-  
-  .menuItems.show {
-    display: block;
-  }
-  
-  /* Links Styling */
+
   .navLink {
-    color: #333;
-    font-size: 16px;
-    font-weight: 500;
-    margin: 0 10px; /* Adjusted margin for spacing */
-    text-decoration: none;
-    padding: 10px 15px;
-    border-radius: 8px;
-    transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transition */
+    margin: 0 5px;
+    padding: 8px 12px;
+    font-size: 15px;
   }
-  
-  .navLink:hover {
-    background-color: #007bff; /* Blue color when hovered */
-    color: #fff;
-    box-shadow: 0 4px 12px rgba(0, 123, 255, 0.2); /* Hover effect with shadow */
-  }
-  
-  /* User Profile Styling */
-  .userProfile {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
-  
-  .userName {
-    font-size: 16px;
-    cursor: pointer;
-    color: #333;
-    display: flex;
-    align-items: center;
-  }
-  
-  .userName:hover {
-    color: #007bff;
-  }
-  
-  /* Popover Styling */
-  .popoverContent {
-    padding: 10px;
-  }
-  
-  .popoverEmail {
-    color: #555;
-    margin-bottom: 10px;
-  }
-  
-  .popoverTitle {
-    font-size: 16px;
-    font-weight: bold;
-  }
-  
-  .logoutButton {
-    background-color: #007bff;
-    border: none;
-    color: #fff;
+}
+
+/* Mobile (768px and below) */
+@media screen and (max-width: 768px) {
+  .menuItems {
+    display: none;
     width: 100%;
+    flex-direction: column;
+    align-items: center;
+    background-color: #fff;
+    position: absolute;
+    top: 70px;
+    left: 0;
+    padding: 15px 0;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
-    padding: 10px;
-    transition: background-color 0.3s ease;
   }
-  
-  .logoutButton:hover {
-    background-color: #0056b3;
+
+  .hamburgerIcon {
+    display: block;
+    min-width: 44px;
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
-  
-  /* Mobile Menu */
-  @media screen and (max-width: 768px) {
-    .menuItems {
-      display: none;
-      width: 100%;
-      flex-direction: column;
-      align-items: center;
-      background-color: #fff;
-      position: absolute;
-      top: 70px;
-      left: 0;
-      padding: 15px 0;
-      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-      border-radius: 8px;
-    }
-  
-    .hamburgerIcon {
-      display: block;
-    }
-  
-    .menuItems.show {
-      display: flex;
-    }
-  
-    .navLink {
-      margin: 10px 0;
-    }
+
+  .menuItems.show {
+    display: flex;
   }
-  
+
+  .navLink {
+    margin: 10px 0;
+    width: 90%;
+    text-align: center;
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .logo img {
+    width: 100px;
+  }
+}
+
+/* Small Mobile (480px and below) */
+@media screen and (max-width: 480px) {
+  .navbar {
+    padding: 10px 15px;
+  }
+
+  .logo img {
+    width: 80px;
+  }
+
+  .menuItems {
+    top: 60px;
+  }
+}

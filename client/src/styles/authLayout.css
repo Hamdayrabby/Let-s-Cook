@@ -15,12 +15,29 @@
     background-position: center;
 }
 
+@media (max-width: 1024px) {
+    .authContainer {
+        padding: 20px;
+    }
+}
+
 @media (max-width: 768px) {
-    .authContainer .authBgImg{
+    .authContainer .authBgImg {
         display: none;
     }
 
-    .authComponentContainer{
+    .authComponentContainer {
         flex-basis: 100%;
+        padding: 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    .authContainer {
+        padding: 10px;
+    }
+
+    .authComponentContainer {
+        padding: 10px;
     }
 }

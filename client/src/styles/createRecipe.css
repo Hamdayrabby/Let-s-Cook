@@ -3,9 +3,12 @@
     align-items: center;
     justify-content: center;
     gap: 25px;
-    background-color: #D8CFC4; /* Light brownish background */
-    padding: 20px; /* Add padding for better spacing */
-    border-radius: 10px; /* Optional: add rounded corners */
+    background-color: #D8CFC4;
+    /* Light brownish background */
+    padding: 20px;
+    /* Add padding for better spacing */
+    border-radius: 10px;
+    /* Optional: add rounded corners */
 }
 
 .createRecipe img {
@@ -21,12 +24,36 @@
 }
 
 button:focus {
-    outline: none; /* Removes default focus outline */
-    box-shadow: none; /* Removes shadow for focus state */
+    outline: none;
+    /* Removes default focus outline */
+    box-shadow: none;
+    /* Removes shadow for focus state */
 }
 
-@media (max-width: 968px) {
+@media (max-width: 1024px) {
+    .createRecipe {
+        flex-direction: column;
+        padding: 15px;
+    }
+
     .createRecipe img {
-        display: none; /* Hide image on smaller screens */
+        display: none;
+        /* Hide image on smaller screens */
+    }
+
+    .createRecipeForm {
+        width: 100%;
+        max-width: 550px;
+    }
+}
+
+@media (max-width: 480px) {
+    .createRecipe {
+        padding: 10px;
+    }
+
+    .createRecipeForm {
+        width: 100%;
+        gap: 8px;
     }
 }
