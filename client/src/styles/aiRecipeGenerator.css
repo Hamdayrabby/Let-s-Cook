@@ -226,6 +226,8 @@
     font-weight: bold;
     min-height: 44px;
     white-space: nowrap;
+    padding: 0 24px;
+    flex-shrink: 0;
 }
 
 .recipe-tags {

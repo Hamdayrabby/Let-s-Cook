@@ -81,7 +81,8 @@ const AiRecipeGenerator = () => {
             }
         } catch (error) {
             console.error("AI Generation Error:", error);
-            message.error("Failed to generate recipe. Please try again.");
+            const errorMessage = error.response?.data?.message || "Failed to generate recipe. Please try again.";
+            message.error(errorMessage);
         } finally {
             setIsLoading(false);
         }
@@ -98,7 +99,7 @@ const AiRecipeGenerator = () => {
                 ingredients: generatedRecipe.ingredients,
                 instructions: generatedRecipe.instructions,
                 cookingTime: generatedRecipe.cookingTime,
-                recipeImg: "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80", // Default pleasant food image placeholder
+                recipeImg: generatedRecipe.image || "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
                 userOwner: userId,
                 status: "pending" // Keep AI recipes private - only visible to creator
             };
@@ -281,6 +282,13 @@ const AiRecipeGenerator = () => {
                             <Card
                                 className="generated-recipe-card"
                                 bodyStyle={{ padding: "0" }}
+                                cover={
+                                    <img
+                                        alt={generatedRecipe.name}
+                                        src={generatedRecipe.image || "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"}
+                                        style={{ height: "200px", objectFit: "cover" }}
+                                    />
+                                }
                             >
                                 <div className="recipe-card-header">
                                     <div className="recipe-header-content">

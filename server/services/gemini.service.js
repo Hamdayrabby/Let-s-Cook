@@ -4,7 +4,10 @@ import dotenv from "dotenv";
 dotenv.config();
 
 // Initialize Gemini API
-const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY || "AIzaSyCzOITuBI8UPCl77erY9LGh4wryJqigOJY");
+if (!process.env.GEMINI_API_KEY) {
+  console.error("CRITICAL: GEMINI_API_KEY is missing in .env file");
+}
+const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
 
 export const generateRecipeMetadata = async (ingredients, cuisine, cookingTime, difficulty) => {
   try {
@@ -32,15 +35,15 @@ export const generateRecipeMetadata = async (ingredients, cuisine, cookingTime, 
 
     console.log("Using Gemini API Key exists:", !!process.env.GEMINI_API_KEY);
     console.log("API Key (first 10 chars):", process.env.GEMINI_API_KEY ? process.env.GEMINI_API_KEY.substring(0, 10) + "..." : "NOT FOUND");
-    
+
     const result = await model.generateContent(prompt);
     const response = await result.response;
     const text = response.text();
     console.log("Gemini Raw Response:", text);
-    
+
     // Clean string to remove any markdown code blocks if present
     const cleanText = text.replace(/```json/g, "").replace(/```/g, "").trim();
-    
+
     return JSON.parse(cleanText);
   } catch (error) {
     console.error("Error generating recipe with Gemini:", error);
