@@ -98,7 +98,7 @@ export default function Home() {
     return (
         <div style={{ minHeight: "100vh", backgroundColor: "#171717", color: "#a3a3a3" }}>
             <Navbar />
-            <div style={{ padding: "40px 60px" }} className="homeContainer">
+            <div style={{ padding: "40px" }} className="homeContainer">
                 <div style={{ marginBottom: "40px" }}>
                     <div style={{ display: "flex", alignItems: "center", gap: "16px", marginBottom: "20px" }}>
                         <div style={{
@@ -141,12 +141,13 @@ export default function Home() {
 
                 <List
                     grid={{
-                        gutter: 16,
+                        gutter: 24,
                         xs: 1,
                         sm: 2,
-                        md: 3,
+                        md: 2,
                         lg: 3,
-                        xl: 4,
+                        xl: 3,
+                        xxl: 3,
                     }}
                     dataSource={filteredRecipes}
                     renderItem={(recipe) => (
