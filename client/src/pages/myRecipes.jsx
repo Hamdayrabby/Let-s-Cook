@@ -57,15 +57,16 @@ export default function MyRecipes() {
             ingredients: recipe.ingredients.join(","),
             instructions: recipe.instructions,
             cookingTime: recipe.cookingTime.toString(),
+            recipeImg: recipe.recipeImg,
         });
         setIsModalVisible(true);
     };
 
-    const handleUpdate = async () => {
+    const handleUpdate = async (updatedData) => {
         try {
             await axios.put(
-                `${API_BASE_URL}/api/v1/recipe/update/${editedRecipe._id}`,
-                editedRecipe
+                `${API_BASE_URL}/api/v1/recipe/update/${updatedData._id}`,
+                updatedData
             );
 
             setIsModalVisible(false);

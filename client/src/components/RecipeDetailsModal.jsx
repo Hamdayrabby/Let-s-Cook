@@ -1,100 +1,102 @@
 import React from 'react';
-import { Modal } from 'antd';
+import { Modal, Tag, Typography, Divider, Image, Row, Col } from 'antd';
+import { ClockCircleOutlined, CalendarOutlined } from '@ant-design/icons';
+
+const { Title, Paragraph, Text } = Typography;
 
 const RecipeDetailsModal = ({ visible, onCancel, recipeDetails }) => {
-    // Recipe Box Styles
-    const modalStyle = {
-        backgroundColor: 'white', // Main background color of the modal
-        borderRadius: '15px',     // Smooth, rounded corners
-        boxShadow: '0px 8px 20px rgba(0, 0, 0, 0.2)', // Soft shadow to make it pop out
-        padding: '20px',          // Extra padding inside the modal for content
-        border: '1px solid #ddd', // Subtle border for a card-like effect
-    };
-
-    // Background Gradient for the Modal Header Section
-    const headerStyle = {
-        background: 'linear-gradient(45deg, #FF6F61, #DE3C3C)', // Gradient background
-        padding: '20px',
-        borderRadius: '10px 10px 0 0',  // Only round the top corners
-        color: '#fff',                 // White text for contrast
-        textAlign: 'center',
-        fontWeight: 'bold',
-        fontSize: '24px'
-    };
-
-    const sectionStyle = {
-        padding: '15px',
-        marginBottom: '10px',
-        borderRadius: '8px',
-        color: '#fff'
-    };
-
-    const labelStyle = {
-        fontWeight: 'bold',
-        color: '#000' // Black color for the label
-    };
-
-    const recipeNameStyle = {
-        fontSize: '28px',   // Bigger size for the name
-        fontWeight: 'bold', // Bold font for the name
-        color: '#fff'       // Keep the name in white to contrast with the background
-    };
-
-    // Updated Ingredients Style to Fix Bullet Issue
-    const ingredientsTextStyle = {
-        fontWeight: 'normal', // Remove bold from ingredients text
-        color: '#000',        // Black color for ingredients text
-        paddingLeft: '20px',  // Add padding to the left to keep the bullets inside
-        listStylePosition: 'inside', // Ensure the bullets are inside the container
-        margin: '0',          // Remove default margin from <ul>
-    };
-
-    const sectionColors = ['#c0392b', '#2980b9', '#ffff00', '#8e44ad', '#138507']; // Section background colors
-
     return (
         <Modal
-            title={null} // Remove the default title as we have a custom header
             visible={visible}
             onCancel={onCancel}
             footer={null}
-            bodyStyle={{ backgroundColor: '#f9f9f9', padding: '0' }} // Remove default padding
+            width={800}
+            bodyStyle={{ padding: 0, borderRadius: '12px', overflow: 'hidden' }}
+            centered
+            closeIcon={<span style={{ color: 'white', fontSize: '18px', backgroundColor: 'rgba(0,0,0,0.5)', padding: '5px', borderRadius: '50%', width: '30px', height: '30px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>×</span>}
         >
-            {/* Custom Recipe Box Style */}
-            <div style={modalStyle}>
+            {/* Hero Image Section */}
+            <div style={{ position: 'relative', height: '300px', width: '100%' }}>
+                <Image
+                    src={recipeDetails.recipeImg || "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"}
+                    alt={recipeDetails.name}
+                    style={{
+                        width: '100%',
+                        height: '300px',
+                        objectFit: 'cover',
+                        display: 'block'
+                    }}
+                    preview={false}
+                    width={'100%'}
+                />
+                <div style={{
+                    position: 'absolute',
+                    bottom: 0,
+                    left: 0,
+                    right: 0,
+                    background: 'linear-gradient(to top, rgba(0,0,0,0.8), transparent)',
+                    padding: '40px 24px 20px',
+                }}>
+                    <Title level={2} style={{ color: '#fff', margin: 0, textShadow: '0 2px 4px rgba(0,0,0,0.3)' }}>
+                        {recipeDetails.name}
+                    </Title>
+                </div>
+            </div>
 
-                {/* Custom Header Section with Gradient */}
-                <div style={headerStyle}>
-                    <p style={recipeNameStyle}>{recipeDetails.name}</p>
+            {/* Content Section */}
+            <div style={{ padding: '24px', backgroundColor: '#fff' }}>
+                {/* Meta Tags */}
+                <div style={{ marginBottom: '24px', display: 'flex', gap: '10px' }}>
+                    <Tag icon={<ClockCircleOutlined />} color="gold" style={{ padding: '4px 10px', fontSize: '14px' }}>
+                        {recipeDetails.cookingTime} mins
+                    </Tag>
+                    {recipeDetails.createdAt && (
+                        <Tag icon={<CalendarOutlined />} style={{ padding: '4px 10px', fontSize: '14px', backgroundColor: '#e6f7ff', color: '#1890ff', borderColor: '#91d5ff' }}>
+                            {new Date(recipeDetails.createdAt).toLocaleDateString()}
+                        </Tag>
+                    )}
                 </div>
 
-                <div style={{ padding: '20px' }}> {/* Padding inside modal content */}
-                    {/* Description Section */}
-                    <div style={{ ...sectionStyle, backgroundColor: sectionColors[1], color: '#000' }}>
-                        <p><span style={labelStyle}>Description:</span> {recipeDetails.description}</p>
-                    </div>
-
-                    {/* Ingredients Section */}
-                    <div style={{ ...sectionStyle, backgroundColor: sectionColors[2], color: '#000' }}>
-                        <p><span style={labelStyle}>Ingredients:</span></p>
-                        <ul style={ingredientsTextStyle}>
-                            {Array.isArray(recipeDetails.ingredients) 
-                              ? recipeDetails.ingredients.map((ingredient, index) => (
-                                  <li key={index}>{ingredient}</li>
-                                )) 
-                              : ''}
-                        </ul>
-                    </div>
-
-                    {/* Instructions Section */}
-                    <div style={{ ...sectionStyle, backgroundColor: sectionColors[3] }}>
-                        <p><span style={labelStyle}>Instructions:</span> {recipeDetails.instructions}</p>
-                    </div>
-
-                    {/* Cooking Time Section */}
-                    <div style={{ ...sectionStyle, backgroundColor: sectionColors[4] }}>
-                        <p><span style={labelStyle}>Cooking Time:</span> {recipeDetails.cookingTime} minutes</p>
-                    </div>
+                {/* Description */}
+                <div style={{ marginBottom: '24px', backgroundColor: '#f9f9f9', padding: '16px', borderRadius: '8px', borderLeft: '4px solid #ffcc00' }}>
+                    <Text italic style={{ fontSize: '16px', color: '#555' }}>
+                        "{recipeDetails.description}"
+                    </Text>
                 </div>
+
+                <Row gutter={[32, 24]}>
+                    {/* Ingredients Column */}
+                    <Col xs={24} md={10}>
+                        <Title level={4} style={{ color: '#333', marginBottom: '16px', borderBottom: '2px solid #ffcc00', paddingBottom: '8px', display: 'inline-block' }}>
+                            Ingredients
+                        </Title>
+                        <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+                            {Array.isArray(recipeDetails.ingredients) && recipeDetails.ingredients.map((ingredient, index) => (
+                                <div key={index} style={{
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                    padding: '8px 12px',
+                                    backgroundColor: '#fafafa',
+                                    borderRadius: '6px',
+                                    border: '1px solid #eee'
+                                }}>
+                                    <span style={{ color: '#ffcc00', marginRight: '10px', fontSize: '12px' }}>●</span>
+                                    <Text style={{ fontSize: '15px' }}>{ingredient}</Text>
+                                </div>
+                            ))}
+                        </div>
+                    </Col>
+
+                    {/* Instructions Column */}
+                    <Col xs={24} md={14}>
+                        <Title level={4} style={{ color: '#333', marginBottom: '16px', borderBottom: '2px solid #ffcc00', paddingBottom: '8px', display: 'inline-block' }}>
+                            Instructions
+                        </Title>
+                        <Paragraph style={{ fontSize: '16px', lineHeight: '1.8', color: '#444', whiteSpace: 'pre-line' }}>
+                            {recipeDetails.instructions}
+                        </Paragraph>
+                    </Col>
+                </Row>
             </div>
         </Modal>
     );

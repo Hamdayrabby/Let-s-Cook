@@ -213,6 +213,7 @@ const AiRecipeGenerator = () => {
                                     <Option value="Chinese">Chinese 🥡</Option>
                                     <Option value="Japanese">Japanese 🍱</Option>
                                     <Option value="American">American 🍔</Option>
+                                    <Option value="Bengali">Bengali 🐟</Option>
                                 </Select>
                             </div>
                             <div>
